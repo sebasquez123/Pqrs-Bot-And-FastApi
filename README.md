@@ -1,4 +1,4 @@
-# MACHINE LEARNING ANALISYS
+# MACHINE LEARNING ANALYSIS
 
 ## Estudio de producción de leche en el Valle del Cauca.
 <div style="justify-content:center;">Para efectos prácticos de diferentes técnicas, estándares y protocolos usados en machine learning, se estudian diferentes casos relacionados con el sector energético y agroindustrial de los diferentes departamentos de Colombia
