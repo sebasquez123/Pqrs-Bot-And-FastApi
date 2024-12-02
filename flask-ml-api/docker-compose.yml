@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  flask-app:
+    image: python:3.11-slim # Usa la imagen oficial de Python 3.11-slim
+    container_name: chatbotflaskapp # Nombre para el contenedor
+    working_dir: /app # Directorio de trabajo dentro del contenedor
+    volumes:
+      - .:/app # Montar el código fuente de tu máquina local en el contenedor
+    ports:
+      - "5000:5000" # Exponer el puerto 5000 del contenedor al puerto 5000 de la máquina local
+    command: >
+      sh -c "pip install --no-cache-dir -r /app/requirements.txt && python /app/app.py " 
+    environment:
+      - FLASK_ENV=development # Configuración de entorno para desarrollo (opcional)
+    stdin_open: true # Permite la interacción en la terminal (opcional)
+    tty: true # Mantiene el contenedor en ejecución (opcional)
