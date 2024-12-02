@@ -12,8 +12,13 @@ principalmente en el estudio de la cantidad de producto elaborado desde las esta
 basado en datos históricos de cantidad de radiación, pluviosidad y temperatura. En este repositorio se encontrará el análisis estadístico descriptivo y correlacional que enseña la influencia de la variabilidad de los factores climáticos mencionados para construir un modelo de regresión básico.
 </div>
 
+
 ## Estudio del esquema de diseño, modelado y evaluacion de modelos de machine learning
 
 <div style="justify-content:center;">Un proyecto enfocado en la exploración de conceptos básicos de machine learning orientado al modelamiento y evaluación de diferentes sistemas de clasificación binaria, usando un set de datos acerca del estudio de la tipología de conductores de vehículos eléctricos según parámetros de comportamiento. 
 en este informe se destacan los aspectos básicos importantes de un esquema y flujo de trabajo para la implementación de modelos de clasificación, así como el análisis de las métricas e índices de rendimiento.
 </div>
+
+## Diseño, Analisis y Desarrollo de un chatbot PQRS
+
+Usando técnicas de tratamiento de datos adecuadas para tokenizar, limpiar, normalizar, lematizar , eliminar stopwords y transformar frases y preguntas, se construye un chatbot de clasificación de asuntos, capaz de identificar patrones de las frases por medio de métodos como bagwords y se vectoriza para ser entrenado por un modelo de regresión logística presentando resultados de desempeño intermedios para un caso puramente practico. Adicionalmente se agrega el contenido obtenido al entorno de manejo de aplicaciones API hecho en Flask, el cual se usa como servicio para consumo de información de entrenamiento e inferencia de modelo.
