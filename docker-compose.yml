@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  flask-app:
+    image: python:3.11-slim 
+    container_name: chatbotflaskapp 
+    working_dir: /app 
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000" 
+    command: >
+      sh -c "pip install --no-cache-dir -r /app/requirements.txt && python /app/app.py " 
+    environment:
+      - FLASK_ENV=development
+    stdin_open: true 
