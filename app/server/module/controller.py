@@ -6,7 +6,7 @@ service = BotService()
 
 class BotController:
 
-    def predict():
+    def predict(self):
         try:
             logging.info("Received request for prediction")
             data = request.json 
@@ -24,11 +24,10 @@ class BotController:
             logging.error(str(e))
             return jsonify({"error": str(e)}), 500
         
-        
-    def info():
+    def info(self):
         try:
-            params,test,train = service.model_info()
-            return jsonify({"Model Parameters": params, "Test Accuracy": test, "Train Accuracy": train})
+            params,test,train,classification_report,confusion_matrix = service.model_info()
+            return jsonify({"Model Parameters": str(params), "Test Accuracy": str(test), "Train Accuracy": str(train), "Classification Report": str(classification_report), "Confusion Matrix": str(confusion_matrix)})
         except Exception as e:
             logging.error(f"Error occurred while fetching model info: {str(e)}")
             return jsonify({'error':f'Error fetching model information - {str(e)}'}), 500

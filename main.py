@@ -1,3 +1,4 @@
+import os
 from app.training.index import workshop
 from app.server.router import bp
 from flask import Flask 
@@ -5,27 +6,7 @@ from flask_cors import CORS
 import logging
 
 
-
-app = Flask(__name__)
-
-logging.basicConfig(level=logging.INFO)
-
-def main():
-    selection = input("Welcome to Pqrs-Bot! Choose an option:\n1. Start the API server\n2. Exit\nEnter your choice (1 or 2): ")
-    if selection == "1":
-        main()
-    elif selection == "2":
-        workshop()
-    elif selection == "3":
-        exit()
-    else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
-        index()
-
-
-def index():
-    
-    print("""
+message = """
           
     =================================================================
     Attention!
@@ -46,10 +27,32 @@ def index():
     If you want to cancel, press Ctrl+C
     
     =================================================================
-    """)
-    input("Would you like to continue? Press Enter to proceed or Ctrl+C to cancel...")
+    """
     
+app = Flask(__name__)
+
+logging.basicConfig(level=logging.INFO)
+
+def main():
+    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+        server(message)
     
+    selection = input("Welcome to Pqrs-Bot! Choose an option:\n1. Start training stage \n2. Start the API server\n3. Exit\nEnter your choice (1, 2 or 3): ")
+    if selection == "1":
+        workshop()
+    elif selection == "2":
+        server()
+    elif selection == "3":
+        exit()
+    else:
+        print("Invalid choice. Please enter 1, 2, or 3.")
+        main()
+
+
+def server(message = ""):
+
+    print(message)
+
     logging.info("initializing app...")
     
     app.register_blueprint(bp, url_prefix='/api/v1')

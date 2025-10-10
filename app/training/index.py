@@ -29,6 +29,7 @@ Ctrl+C
         div_data = split_data(df)
         # training the model with the split data.
         train_model(*div_data)
+        exit()
     except Exception as e:
         logging.error(f"Error: {e}")
         raise e

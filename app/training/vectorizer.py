@@ -1,7 +1,7 @@
 
 from sklearn.feature_extraction.text import CountVectorizer
 from app.helpers.loading_animation import draw_progress
-from app.config.configs import model_path, vectorized_name
+from app.config.configs import vectorizer_path
 import logging
 import pandas as pd
 import spacy
@@ -13,7 +13,6 @@ import time
 # We use spacy to tokenize, clean, lemmatize and remove stopwords. 
 # Select the size of the model and the language.
 nlp = spacy.load("en_core_web_sm")
-
 
 def transform_phrase(phrase):
     '''This function takes a phrase as input, processes it using spaCy
@@ -34,7 +33,6 @@ def make_dataframe(dictionary):
         
         # Extract and refine each phrase
         for (index, (category, phrases)) in enumerate(dictionary.items()):
-            logging.info(f"\nProcessing category: {category} ({index + 1} of {len(dictionary)})")
             time_start = time.time()
             for phrase in phrases:
                 processed_text = transform_phrase(phrase)
@@ -65,15 +63,16 @@ def make_dataframe(dictionary):
         bagwords = vectorizer.fit_transform(df['Transformed text']).toarray()
         
         # Save the vectorizer for future use in the prediction phase.
-        
-        joblib.dump(vectorizer, f"{model_path}/{vectorized_name}")
-        
+
+        joblib.dump(vectorizer, vectorizer_path)
+
         # Recreate the dataframe.
         df_bagword = pd.DataFrame(bagwords, columns=vectorizer.get_feature_names_out())
         df_bagword['Class'] = df['Class']
 
         logging.info("Dataframe and vectorization process completed successfully.")
         return df_bagword
+        
     
     except Exception as e:
         raise type(e)(f"Error during dataframe creation and vectorization process: {e}") from e
